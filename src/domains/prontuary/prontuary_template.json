@@ -1,0 +1,39 @@
+{
+  "id": 0,
+  "name": "Template!",
+  "cpf": "",
+  "bith_date": "",
+  "emit_date": "",
+  "file": {
+    "main_complaint": "",
+    "how_long_problem_existed": "",
+    "problem_is": "",
+    "hair_stayed": "",
+    "scalp": "",
+    "personal_history": "",
+    "previous_months": "",
+    "allergies": "",
+    "pregnancy_worsened_problem": "",
+    "menstrual_alteration": "",
+    "family_cases": "",
+    "chemics_paddle_drier": "",
+    "uses": "",
+    "washes_hair_frequency": "",
+    "physical_macroscopic_exam": "",
+    "trichoscopy": "",
+    "proprosed_treatment": ""
+  },
+  "consent_term": {
+    "Pelo_presente_termo_eu": "",
+    "autorizo": "",
+    "image_auth": "",
+    "date": "",
+    "signature_link": ""
+  },
+  "treatment": {
+    "dates": [],
+    "used_protocols": [],
+    "observed_result": [],
+    "value": ""
+  }
+}
