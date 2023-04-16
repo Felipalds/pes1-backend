@@ -2,7 +2,8 @@ const prontuaryObject = {
   table_id: 0,
   user_id: 0,
   title: "",
-  json_path: "string",
+  json_path: "",
+  created_on: ""
 };
 export type ProntuaryObject = typeof prontuaryObject;
 
