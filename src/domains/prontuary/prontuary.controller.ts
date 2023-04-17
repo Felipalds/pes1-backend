@@ -14,13 +14,13 @@ const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
   // GET USER DATA
-  const usuario_id = 1;
+  const user_id = req.query.user_id;
   // OPEN DATABASE CONNECTION
   const connect = pool.connect();
   // RETURN DATA
   connect.then(async (client: PoolClient) => {
     const query_res = await client.query(
-      `SELECT * FROM prontuaries WHERE user_id = ${usuario_id}`
+      `SELECT * FROM prontuaries WHERE user_id = ${user_id}`
     );
     const rows = query_res.rows
     console.log("Rows:" + rows.length);
