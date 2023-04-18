@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -L --watch 'src//*.ts' --ignore 'src//*.spec.ts' --exec 'ts-node'  src/app.ts"
+    "dev": "nodemon -L --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/app.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/gabriel-r-s/bitej-mern-blog-api#readme",
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/pg": "^8.6.6",
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
