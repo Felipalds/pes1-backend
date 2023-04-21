@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import routes from './routes/routes';
+import cors from "cors"
 
 const cors = require("cors")
 

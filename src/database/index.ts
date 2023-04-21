@@ -54,11 +54,16 @@ const getUserById = async (
 };
 
 const getAllProcedures = async () => {
-  const client = await pool.connect();
-  const query_res = await client.query(`SELECT * FROM procedures LIMIT 100`);
-  const rows = query_res.rows;
-  return rows;
-};
+    const client = await pool.connect();
+    const query_res = await client.query(
+        `SELECT * FROM procedures LIMIT 100`
+    )
+    const rows = query_res.rows
+    client.release()
+
+    return rows
+}
+
 
 const getProcedureById = async (procedureId: any) => {
   const client = await pool.connect();
@@ -73,15 +78,29 @@ const getAllProfessionals = async () => {
   const query_res = await client.query(`SELECT * FROM professionals LIMIT 100`);
   const rows = query_res.rows;
   return rows;
-};
+}
+
+const getAllProfessionals = async () => {
+    const client = await pool.connect();
+    const query_res = await client.query(
+        `SELECT * FROM professionals LIMIT 100`
+    )
+    const rows = query_res.rows
+    client.release()
+
+    return rows
+}
+
 
 const getProfessionalById = async (professionalId: any) => {
   const client = await pool.connect();
   const res = await client.query(`
         SELECT * FROM professionals WHERE id = ${professionalId}
-    `);
-  return res.rows;
-};
+    `)
+    client.release()
+    return res.rows
+}
+
 
 export {
   getUserById,
