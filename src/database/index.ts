@@ -29,6 +29,8 @@ const getAllProcedures = async () => {
         `SELECT * FROM procedures LIMIT 100`
     )
     const rows = query_res.rows
+    client.release()
+
     return rows
 }
 
@@ -37,6 +39,8 @@ const getProcedureById = async (procedureId: any) => {
     const res = await client.query(`
         SELECT * FROM procedures WHERE id = ${procedureId}
     `)
+    client.release()
+
     return res.rows
 }
 
@@ -46,6 +50,8 @@ const getAllProfessionals = async () => {
         `SELECT * FROM professionals LIMIT 100`
     )
     const rows = query_res.rows
+    client.release()
+
     return rows
 }
 
@@ -54,6 +60,7 @@ const getProfessionalById = async (professionalId: any) => {
     const res = await client.query(`
         SELECT * FROM professionals WHERE id = ${professionalId}
     `)
+    client.release()
     return res.rows
 }
 
