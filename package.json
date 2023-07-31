@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/gabriel-r-s/bitej-mern-blog-api#readme",
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/dotenv": "^8.2.0",
     "@types/pg": "^8.6.6",
     "bcrypt": "^5.1.0",
