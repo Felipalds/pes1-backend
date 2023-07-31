@@ -9,7 +9,7 @@ const router = Router()
 
 router.post("/create", async (req: Request, res: Response) => {
     try{
-        const { name, lastName, username, email, password } = req.body
+        const { name, email, password } = req.body
 
         const file = fs.readFileSync(PATH)
         const json = JSON.parse(file.toString())
@@ -21,7 +21,7 @@ router.post("/create", async (req: Request, res: Response) => {
 
         const hashPassword = await bcrypt.hash(password, 10)
 
-        const newUser = new User(name, lastName, username, email, hashPassword)
+        const newUser = new User(name, email, hashPassword)
         json.push(newUser)
         fs.writeFileSync(PATH, JSON.stringify(json))
         return res.status(200).json({"OK": "OK"})
@@ -31,8 +31,12 @@ router.post("/create", async (req: Request, res: Response) => {
     }
 })
 
-router.get("/login", async(req: Request, res: Response) => {
+router.post("/login", async(req: Request, res: Response) => {
+    try{
+
 		const { email, password } = req.body
+        console.log(req.body)
+        console.log(email, password)
 
         let findEmail = false
         let verifyPass = false
@@ -50,17 +54,14 @@ router.get("/login", async(req: Request, res: Response) => {
 			throw new Error("Email ou Senha inválidos")
 		}
 
-
 		if (!verifyPass) {
 			throw new Error("Email ou Senha inválidos")
 		}
-
-		
-		
-
-		return res.json({
-			logged: true
-		})
+    
+		return res.send(true)
+    } catch(error) {
+        return res.send(false)
+    }
 })
 
 export default router
