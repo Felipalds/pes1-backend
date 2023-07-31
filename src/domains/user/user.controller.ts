@@ -24,10 +24,10 @@ router.post("/create", async (req: Request, res: Response) => {
         const newUser = new User(name, email, hashPassword)
         json.push(newUser)
         fs.writeFileSync(PATH, JSON.stringify(json))
-        return res.status(200).json({"OK": "OK"})
+        return res.send(true)
     } catch(error){
         console.log(error)
-        return res.status(500).json("error")
+        return res.send(false)
     }
 })
 
