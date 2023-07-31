@@ -31,11 +31,12 @@ router.post("/create", async (req: Request, res: Response) => {
     }
 })
 
-router.get("/login", async(req: Request, res: Response) => {
+router.post("/login", async(req: Request, res: Response) => {
     try{
 
-    
 		const { email, password } = req.body
+        console.log(req.body)
+        console.log(email, password)
 
         let findEmail = false
         let verifyPass = false
@@ -53,15 +54,10 @@ router.get("/login", async(req: Request, res: Response) => {
 			throw new Error("Email ou Senha inválidos")
 		}
 
-
 		if (!verifyPass) {
 			throw new Error("Email ou Senha inválidos")
 		}
-
     
-		
-		
-
 		return res.send(true)
     } catch(error) {
         return res.send(false)
