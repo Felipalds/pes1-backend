@@ -10,17 +10,17 @@ export class UserController {
         try{
             const { name, lastName, username, email, password } = req.body
 
-            const userExists = await PAth.findOneBy({ email })
-
-            if (userExists) {
-                throw new Error("Usuário já registrado")
-            }
+            const file = fs.readFileSync(PATH)
+            const json = JSON.parse(file.toString())
+            json.array.forEach((user: User) => {
+                if(user.email == email){
+                    throw new Error("Usuário já registrado")
+                }
+            });
 
             const hashPassword = await bcrypt.hash(password, 10)
 
             const newUser = new User(name, lastName, username, email, hashPassword)
-            const file = fs.readFileSync(PATH)
-            const json = JSON.parse(file.toString())
             json.push(newUser)
             fs.writeFileSync(PATH, JSON.stringify(json))
             return res.status(200).json({"OK": "OK"})
@@ -34,23 +34,32 @@ export class UserController {
 	async login(req: Request, res: Response) {
 		const { email, password } = req.body
 
-		const user = await userRepository.findOneBy({ email })
+        let findEmail = false
+        let verifyPass = false
 
-		if (!user) {
+        const file = fs.readFileSync(PATH)
+            const json = JSON.parse(file.toString())
+            json.array.forEach(async(user: User) => {
+                if(user.email = email){
+                    findEmail = true
+                    const verifyPass = await bcrypt.compare(password, user.password)
+                }
+            });
+
+		if (!findEmail) {
 			throw new Error("Email ou Senha inválidos")
 		}
 
-		const verifyPass = await bcrypt.compare(password, user.password)
 
 		if (!verifyPass) {
 			throw new Error("Email ou Senha inválidos")
 		}
 
 		
-		const { password: _, ...userLogin } = user
+		
 
 		return res.json({
-			user: userLogin
+			logged: true
 		})
 	}
 
